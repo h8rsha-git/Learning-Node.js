@@ -1,5 +1,6 @@
 const fs = require("fs");
 const http = require("http");
+const url = require('url');
 
 // const hello = "Hello World";
 // console.log(hello);
@@ -33,10 +34,50 @@ const http = require("http");
 // });
 
 /// CREATING A SERVER
+
+const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`,'utf-8');
+const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`,'utf-8');
+const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.html`,'utf-8');
+
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`,'utf-8');
+const dataObj = JSON.parse(data);
+
 const server = http.createServer((req,res) =>{
-    res.end("Hello from the server !!");
+    
+    const pathname = req.url;
+    // console.log(pathname);
+
+    /// Overview Page
+    if(pathname === "/" || pathname === '/overview'){
+        res.writeHead(200,{
+            'Content-type': 'text/html'
+        });
+        res.end(tempOverview);
+    }
+
+    /// Product Page
+    else if(pathname === '/product'){
+        res.end("This is the PRODUCT !!");
+    }
+
+    /// API Page
+    else if(pathname === '/api'){
+        // JSON -> JS
+        res.writeHead(200,{
+            'Content-type': 'application/json'
+        });
+        res.end(data);
+    }
+    /// Invalid URL
+    else{
+        res.writeHead(404, { 
+            'Content-type':'text/html', // browser now expects html
+            'My-own-header': 'hello-world'
+        });
+        res.end("<h1>Page NOT FOUND !!</h1>");
+    }
 });
 
-server.listen('127.0.0.1','8000',()=>{
+server.listen(8000,'127.0.0.1',()=>{
     console.log("Listening on port 8000....");
 });
