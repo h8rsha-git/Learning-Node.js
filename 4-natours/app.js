@@ -87,6 +87,13 @@ app
   .patch(updateTour)
   .delete(deleteTour);
 
+// custom middleware
+app.use((req, res, next) => {
+  console.log('Hello from the middleware👋');
+  // else request-response cycle is stuck
+  next();
+});
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`App running on port ${port}...`);
