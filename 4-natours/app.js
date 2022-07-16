@@ -5,14 +5,14 @@ const morgan = require('morgan');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 
-/// 1. MIDDLEWARES
+/// MIDDLEWARES
 app.use(morgan('dev'));
 app.use(express.json());
+// for serving static files
+app.use(express.static(`${__dirname}/public`));
 
-// custom middleware
 app.use((req, res, next) => {
   console.log('Hello from the middleware👋');
-  // else request-response cycle is stuck
   next();
 });
 
@@ -21,13 +21,7 @@ app.use((req, res, next) => {
   next();
 });
 
-/// 2. START SERVER
-
-// specifying the route, for which to use
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
-const port = 3000;
-app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
-});
+module.exports = app;
