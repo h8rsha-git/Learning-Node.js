@@ -1,6 +1,6 @@
 exports.getAllUsers = (req, res) => {
   // Internal Server Error
-  return res.status(500).json({
+  res.status(500).json({
     status: 'error',
     messsage: 'This route is not yet defined',
   });
@@ -8,7 +8,7 @@ exports.getAllUsers = (req, res) => {
 
 exports.getUser = (req, res) => {
   // Internal Server Error
-  return res.status(500).json({
+  res.status(500).json({
     status: 'error',
     messsage: 'This route is not yet defined',
   });
@@ -16,7 +16,7 @@ exports.getUser = (req, res) => {
 
 exports.createUser = (req, res) => {
   // Internal Server Error
-  return res.status(500).json({
+  res.status(500).json({
     status: 'error',
     messsage: 'This route is not yet defined',
   });
@@ -24,7 +24,7 @@ exports.createUser = (req, res) => {
 
 exports.updateUser = (req, res) => {
   // Internal Server Error
-  return res.status(500).json({
+  res.status(500).json({
     status: 'error',
     messsage: 'This route is not yet defined',
   });
@@ -32,7 +32,7 @@ exports.updateUser = (req, res) => {
 
 exports.deleteUser = (req, res) => {
   // Internal Server Error
-  return res.status(500).json({
+  res.status(500).json({
     status: 'error',
     messsage: 'This route is not yet defined',
   });
