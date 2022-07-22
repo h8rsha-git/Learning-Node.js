@@ -8,6 +8,13 @@ const tourRouter = express.Router();
 /// PARAM MIDDLEWARE
 // tourRouter.param('id', tourController.checkId);
 
+tourRouter
+  .route('/top-5-cheap')
+  .get(tourController.aliasTopTours, tourController.getAllTours);
+
+tourRouter.route('/tour-stats').get(tourController.getTourStats);
+tourRouter.route('/monthly-plan/:year').get(tourController.getMonthlyPlan);
+
 /// FOR TOURS
 tourRouter
   .route('/')
